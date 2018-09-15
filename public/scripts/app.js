@@ -2,10 +2,6 @@
 
 console.log("app is running");
 
-// Challenge-2:
-//  create app object title/subtitle
-//  use title/subtitle in template
-// render new template inistead of previous one
 var app = {
     title: 'Indecision App',
     subtitle: 'Put your life in the hands of a computer.'
@@ -40,17 +36,57 @@ var template = React.createElement(
     )
 );
 
-// var userName = 'Milek Agrawal';
-// var userAge = 20;
-// var userLoc = 'Gandhinagar';
+var user = {
+    name: "Milek",
+    age: 20,
+    location: "Gandhinagar"
 
-// var template2 = (
-// <div>
-//     <h2>{userName}</h2>
-//     <p>Age: {userAge}</p>
-//     <p>Location: {userLoc}</p>
-// </div>
-// );
+    // function getLocation(location){
+    //     if(location){
+    //         return location;
+    //     }else{
+    //         return "Unknown";
+    //     }
+    // }
+
+    // var template2 = (
+    // <div>
+    //     <h2>{user.name}</h2>
+    //     <p>Age: {user.age}</p>
+    //     <p>Location: {getLocation(user.location)}</p>
+    // </div>
+    // );
+
+    //now we want that nothing should appear in 
+    //location placeholder if location is unknown.
+};function getLocation(location) {
+    if (location) {
+        return React.createElement(
+            'p',
+            null,
+            'Location: ',
+            location
+        );
+    }
+}
+
+var template2 = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h2',
+        null,
+        user.name
+    ),
+    React.createElement(
+        'p',
+        null,
+        'Age: ',
+        user.age
+    ),
+    getLocation(user.location)
+);
+////////////////////////////////////////////////
 
 var appRoot = document.getElementById('app');
-ReactDOM.render(template, appRoot);
+ReactDOM.render(template2, appRoot);
