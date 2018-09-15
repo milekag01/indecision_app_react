@@ -1,61 +1,56 @@
-"use strict";
+'use strict';
 
 console.log("app is running");
 
+// Challenge-2:
+//  create app object title/subtitle
+//  use title/subtitle in template
+// render new template inistead of previous one
+var app = {
+    title: 'Indecision App',
+    subtitle: 'Put your life in the hands of a computer.'
+};
+
 var template = React.createElement(
-    "div",
+    'div',
     null,
     React.createElement(
-        "h2",
+        'h2',
         null,
-        "Hi there...this is JSX from src"
+        app.title
     ),
     React.createElement(
-        "p",
+        'p',
         null,
-        "this is a paragraph"
+        app.subtitle
     ),
     React.createElement(
-        "ol",
+        'ol',
         null,
         React.createElement(
-            "li",
+            'li',
             null,
-            "item-1"
+            'item-1'
         ),
         React.createElement(
-            "li",
+            'li',
             null,
-            "item-2"
+            'item-2'
         )
     )
 );
 
-// Challenge-1: create net template var jsx expression
-// div 
-//     h2->milek
-//     p->age
-//     p->location
-// render new template inistead of previous one
+// var userName = 'Milek Agrawal';
+// var userAge = 20;
+// var userLoc = 'Gandhinagar';
 
-var template2 = React.createElement(
-    "div",
-    null,
-    React.createElement(
-        "h2",
-        null,
-        "Milek Agrawal"
-    ),
-    React.createElement(
-        "p",
-        null,
-        "Age: 20"
-    ),
-    React.createElement(
-        "p",
-        null,
-        "Location: Gandhinagar, Gujarat"
-    )
-);
+// var template2 = (
+// <div>
+//     <h2>{userName}</h2>
+//     <p>Age: {userAge}</p>
+//     <p>Location: {userLoc}</p>
+// </div>
+// );
+
 var appRoot = document.getElementById('app');
-ReactDOM.render(template2, appRoot);
+ReactDOM.render(template, appRoot);
