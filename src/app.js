@@ -1,14 +1,21 @@
 console.log("app is running");
 
+//Challenge-3:
+//render subtitle and p-tag if subtitle exists -- logical & operator
+//conditionally render new p-tag if options.length>0 'here are your options' or 'no options'
+//do it using ternary operator
 var app = {
     title:'Indecision App',
-    subtitle:'Put your life in the hands of a computer.'
+    subtitle:'Put your life in the hands of a computer.',
+    options:['option-1','option-2']
 }
 
 var template = (
 <div>
     <h2>{app.title}</h2>
-    <p>{app.subtitle}</p>
+    {app.subtitle && <p>{app.subtitle}</p>}
+    <p>{(app.options && app.options.length>0) ? 'Here are your options' : 'no options'}</p>
+    
     <ol>
         <li>item-1</li>
         <li>item-2</li>
@@ -48,12 +55,12 @@ function getLocation(location){
 
 var template2 = (
 <div>
-    <h2>{user.name}</h2>
-    <p>Age: {user.age}</p>
+    <h2>{user.name ? user.name : 'Anonymous'}</h2>
+    {(user.age && user.age>=18) && <p>Age: {user.age}</p>}
     {getLocation(user.location)}
 </div>
 );
 ////////////////////////////////////////////////
 
 var appRoot = document.getElementById('app');
-ReactDOM.render(template2,appRoot);
+ReactDOM.render(template,appRoot);
