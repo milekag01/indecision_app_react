@@ -44,40 +44,49 @@ var template = React.createElement(
 
 var count = 0;
 var addOne = function addOne() {
-    console.log("add one");
+    count++;
+    renderCounterApp();
 };
 var subtractOne = function subtractOne() {
-    console.log("subtract one");
+    count--;
+    renderCounterApp();
 };
 var reset = function reset() {
-    console.log("reset");
+    count = 0;
+    renderCounterApp();
 };
 
-var template2 = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h2',
-        null,
-        'Count: ',
-        count
-    ),
-    React.createElement(
-        'button',
-        { onClick: addOne },
-        '+1'
-    ),
-    React.createElement(
-        'button',
-        { onClick: subtractOne },
-        '-1'
-    ),
-    React.createElement(
-        'button',
-        { onClick: reset },
-        'Reset'
-    )
-);
-console.log(template2);
 var appRoot = document.getElementById('app');
-ReactDOM.render(template2, appRoot);
+
+var renderCounterApp = function renderCounterApp() {
+    var template2 = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h2',
+            null,
+            'Count: ',
+            count
+        ),
+        React.createElement(
+            'button',
+            { onClick: addOne },
+            '+1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: subtractOne },
+            '-1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: reset },
+            'Reset'
+        )
+    );
+
+    ReactDOM.render(template2, appRoot);
+};
+
+//rendering the template in the starting
+renderCounterApp();
