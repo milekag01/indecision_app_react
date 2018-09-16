@@ -1,9 +1,5 @@
 console.log("app is running");
 
-//Challenge-3:
-//render subtitle and p-tag if subtitle exists -- logical & operator
-//conditionally render new p-tag if options.length>0 'here are your options' or 'no options'
-//do it using ternary operator
 const app = {
     title:'Indecision App',
     subtitle:'Put your life in the hands of a computer.',
@@ -23,44 +19,13 @@ const template = (
 </div>
 );
 
-const user = {
-    name: "Milek",
-    age: 20,
-    location: "Gandhinagar"
-}
-
-// function getLocation(location){
-//     if(location){
-//         return location;
-//     }else{
-//         return "Unknown";
-//     }
-// }
-
-// var template2 = (
-// <div>
-//     <h2>{user.name}</h2>
-//     <p>Age: {user.age}</p>
-//     <p>Location: {getLocation(user.location)}</p>
-// </div>
-// );
-
-//now we want that nothing should appear in 
-//location placeholder if location is unknown.
-function getLocation(location){
-    if(location){
-        return <p>Location: {location}</p>;
-    }
-}
-
+let count = 0;
 const template2 = (
 <div>
-    <h2>{user.name ? user.name : 'Anonymous'}</h2>
-    {(user.age && user.age>=18) && <p>Age: {user.age}</p>}
-    {getLocation(user.location)}
+    <h2>Count: {count}</h2>
+    <button id="my-id " className="button">+1</button>
 </div>
 );
-////////////////////////////////////////////////
-
+console.log(template2);
 const appRoot = document.getElementById('app');
-ReactDOM.render(template,appRoot);
+ReactDOM.render(template2,appRoot);
