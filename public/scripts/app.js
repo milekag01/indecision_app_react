@@ -43,6 +43,16 @@ var template = React.createElement(
 );
 
 var count = 0;
+var addOne = function addOne() {
+    console.log("add one");
+};
+var subtractOne = function subtractOne() {
+    console.log("subtract one");
+};
+var reset = function reset() {
+    console.log("reset");
+};
+
 var template2 = React.createElement(
     'div',
     null,
@@ -54,8 +64,18 @@ var template2 = React.createElement(
     ),
     React.createElement(
         'button',
-        { id: 'my-id ', className: 'button' },
+        { onClick: addOne },
         '+1'
+    ),
+    React.createElement(
+        'button',
+        { onClick: subtractOne },
+        '-1'
+    ),
+    React.createElement(
+        'button',
+        { onClick: reset },
+        'Reset'
     )
 );
 console.log(template2);

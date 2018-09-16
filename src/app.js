@@ -20,10 +20,22 @@ const template = (
 );
 
 let count = 0;
+const addOne = () => {
+    console.log("add one");
+}
+const subtractOne = () => {
+    console.log("subtract one");
+}
+const reset = () => {
+    console.log("reset");
+}
+
 const template2 = (
 <div>
     <h2>Count: {count}</h2>
-    <button id="my-id " className="button">+1</button>
+    <button onClick={addOne}>+1</button>
+    <button onClick={subtractOne}>-1</button>
+    <button onClick={reset}>Reset</button>
 </div>
 );
 console.log(template2);
