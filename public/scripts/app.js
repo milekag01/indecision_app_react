@@ -20,12 +20,15 @@ var Indecision = function (_React$Component) {
     _createClass(Indecision, [{
         key: "render",
         value: function render() {
+            var title = "Indecision";
+            var subtitle = "Put your life in hands of a computer";
+            var options = ["option1", "option2", "option3"];
             return React.createElement(
                 "div",
                 null,
-                React.createElement(Header, null),
+                React.createElement(Header, { title: title, subtitle: subtitle }),
                 React.createElement(Action, null),
-                React.createElement(Options, null),
+                React.createElement(Options, { options: options }),
                 React.createElement(AddOption, null)
             );
         }
@@ -52,12 +55,12 @@ var Header = function (_React$Component2) {
                 React.createElement(
                     "h1",
                     null,
-                    "Indecision"
+                    this.props.title
                 ),
                 React.createElement(
                     "h2",
                     null,
-                    "Put your life in hands of a computer"
+                    this.props.subtitle
                 )
             );
         }
@@ -108,12 +111,13 @@ var Options = function (_React$Component4) {
             return React.createElement(
                 "div",
                 null,
-                React.createElement(
-                    "p",
-                    null,
-                    "option(s) components here"
-                ),
-                React.createElement(Option, null)
+                this.props.options.map(function (option) {
+                    return React.createElement(
+                        "p",
+                        { key: option },
+                        option
+                    );
+                })
             );
         }
     }]);
