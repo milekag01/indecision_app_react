@@ -1,63 +1,54 @@
-console.log("app is running");
-
-const app = {
-    title:'Indecision App',
-    subtitle:'Put your life in the hands of a computer.',
-    options:[]
+class Header extends React.Component {
+   render() {
+       return (
+            <div>
+                <h1>Indecision</h1>
+                <h2>Put your life in hands of a computer</h2>
+            </div>
+       );
+   } 
 }
 
-//to add new option to array
-const onformsubmit = (event) =>{
-    event.preventDefault(); //to stop full page refresh
-    const option = event.target.elements.option.value;  // to grab the value from the input field
-    // console.log(event.target.elements.option.value);
-    if(option){
-        app.options.push(option);
-        event.target.elements.option.value='';  //to empty the text box
-        printOptions();
+class Action extends React.Component {
+    render() {
+        return (
+            <div>
+                <button>What should I do?</button>
+            </div>
+        );
+    }
+} 
+
+class Options extends React.Component {
+    render() {
+        return (
+            <div>
+                <p>options components here</p>
+            </div>
+        );
     }
 }
 
-//to remove all options from array
-const removeAllOptions = () => {
-    app.options=[]; //clearing th earray
-    printOptions();
+class AddOption extends React.Component {
+    render() {
+        return (
+            <div>
+                <form>
+                    <input type="text" name="option" />
+                    <button type="submit">submit</button>
+                </form>
+            </div>
+        );
+    }
 }
-
-const onMakeDecision = () => {
-    const randomNum = Math.floor(Math.random() * app.options.length);
-    const option = app.options[randomNum];
-    alert(option);
-}
-
+const jsx = (
+    <div>
+        <Header />
+        <Action />
+        <Options />
+        <AddOption />
+    </div>
+);
 const appRoot = document.getElementById('app');
 
-
-const printOptions = () => {
-    const template = (
-        <div>
-            <h2>{app.title}</h2>
-            {app.subtitle && <p>{app.subtitle}</p>}
-            <p>{(app.options && app.options.length>0) ? 'Here are your options' : 'no options'}</p>
-            <button disabled={app.options.length === 0} onClick={onMakeDecision}>What should I do</button>
-            <button onClick={removeAllOptions}>Remove all</button>
-        
-            <ol>
-            {
-                app.options.map((option) => {
-                   return <li key={option}>{option}</li>
-                })
-            }
-            </ol>
-        
-            <form onSubmit={onformsubmit}>
-                <input type="text" name="option"/>
-                <button>Add option</button>
-            </form>
-            
-        </div>
-    );
-    ReactDOM.render(template,appRoot);    
-};
-
-printOptions();
+ReactDOM.render(jsx,appRoot);
