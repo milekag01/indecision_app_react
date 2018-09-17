@@ -111,8 +111,9 @@ var Options = function (_React$Component4) {
                 React.createElement(
                     "p",
                     null,
-                    "options components here"
-                )
+                    "option(s) components here"
+                ),
+                React.createElement(Option, null)
             );
         }
     }]);
@@ -120,8 +121,34 @@ var Options = function (_React$Component4) {
     return Options;
 }(React.Component);
 
-var AddOption = function (_React$Component5) {
-    _inherits(AddOption, _React$Component5);
+//challenge to create 'Option' component and nest it in 'Options' component
+
+
+var Option = function (_React$Component5) {
+    _inherits(Option, _React$Component5);
+
+    function Option() {
+        _classCallCheck(this, Option);
+
+        return _possibleConstructorReturn(this, (Option.__proto__ || Object.getPrototypeOf(Option)).apply(this, arguments));
+    }
+
+    _createClass(Option, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "p",
+                null,
+                "option component here"
+            );
+        }
+    }]);
+
+    return Option;
+}(React.Component);
+
+var AddOption = function (_React$Component6) {
+    _inherits(AddOption, _React$Component6);
 
     function AddOption() {
         _classCallCheck(this, AddOption);

@@ -36,8 +36,18 @@ class Options extends React.Component {
     render() {
         return (
             <div>
-                <p>options components here</p>
+                <p>option(s) components here</p>
+                <Option />
             </div>
+        );
+    }
+}
+
+//challenge to create 'Option' component and nest it in 'Options' component
+class Option extends React.Component {
+    render() {
+        return (
+            <p>option component here</p>
         );
     }
 }
