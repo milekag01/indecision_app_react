@@ -19,9 +19,15 @@ const onformsubmit = (event) =>{
 }
 
 //to remove all options from array
-const removeAllOptions = (event) => {
+const removeAllOptions = () => {
     app.options=[]; //clearing th earray
     printOptions();
+}
+
+const onMakeDecision = () => {
+    const randomNum = Math.floor(Math.random() * app.options.length);
+    const option = app.options[randomNum];
+    alert(option);
 }
 
 const appRoot = document.getElementById('app');
@@ -33,7 +39,7 @@ const printOptions = () => {
             <h2>{app.title}</h2>
             {app.subtitle && <p>{app.subtitle}</p>}
             <p>{(app.options && app.options.length>0) ? 'Here are your options' : 'no options'}</p>
-            <p>{app.options.length}</p>
+            <button disabled={app.options.length === 0} onClick={onMakeDecision}>What should I do</button>
             <button onClick={removeAllOptions}>Remove all</button>
         
             <ol>
