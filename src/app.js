@@ -4,16 +4,19 @@ class Indecision extends React.Component {
         this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
         this.handlePick = this.handlePick.bind(this);
         this.handleAddOption = this.handleAddOption.bind(this);
+        this.handleDeleteOption = this.handleDeleteOption.bind(this);
         this.state = {
             options: props.options
         }
     }
     handleDeleteOptions() {
-        this.setState(() => {
-            return {
-                options: []
-            }
+        this.setState(() => ({ options: [] }) );
+    }
+    handleDeleteOption(optionToRemove) {
+        this.setState((prevState) => ({
+            options: prevState.options.filter((option) => optionToRemove!==option )//to delete the option
         })
+        )
     }
     handlePick() {
         const randomNum = Math.floor(Math.random() * this.state.options.length);
@@ -27,11 +30,7 @@ class Indecision extends React.Component {
         else if(this.state.options.indexOf(option)>-1){
             return 'This option already exist';
         }
-        this.setState((prevState) => {
-            return {
-                options: prevState.options.concat(option)
-            }
-        });
+        this.setState((prevState) => ({ options: prevState.options.concat(option) }) );
     }
     render() {
         const subtitle = "Put your life in hands of a computer";
@@ -46,6 +45,7 @@ class Indecision extends React.Component {
                 <Options 
                 options = {this.state.options}
                 handleDeleteOptions= {this.handleDeleteOptions}
+                handleDeleteOption = {this.handleDeleteOption} 
                 />
                 <AddOption handleAddOption = {this.handleAddOption}/>
             </div>
@@ -70,18 +70,6 @@ Header.defaultProps = {
     title: 'Indecision'
 }
 
-//stateless
-// class Header extends React.Component {
-//    render() {
-//        return (
-//             <div>
-//                 <h1>{this.props.title}</h1>
-//                 <h2>{this.props.subtitle}</h2>
-//             </div>
-//        );
-//    } 
-// }
-
 const Action = (props) => {
     return (
         <div>
@@ -94,62 +82,36 @@ const Action = (props) => {
     );
 }
 
-//stateless
-// class Action extends React.Component {
-//     render() {
-//         return (
-//             <div>
-//                 <button onClick={this.props.handlePick}
-//                         disabled={!this.props.hasOptions}
-//                 >
-//                 What should I do?
-//                 </button>
-//             </div>
-//         );
-//     }
-// } 
-
 const Options = (props) => {
     return (
         <div>
             <button onClick = {props.handleDeleteOptions}>Remove All</button>
             {
-                props.options.map((option) => <Option key = {option} optionText = {option}/>)
+                props.options.map((option) => ( 
+                    <Option key = {option} 
+                    optionText = {option}
+                    handleDeleteOption = {props.handleDeleteOption}
+                    />)
+                )
             }
-            
         </div>
     );
 }
 
-//stateless
-// class Options extends React.Component {
-//     render() {
-//         return (
-//             <div>
-//                 <button onClick = {this.props.handleDeleteOptions}>Remove All</button>
-//                 {
-//                     this.props.options.map((option) => <Option key = {option} optionText = {option}/>)
-//                 }
-                
-//             </div>
-//         );
-//     }
-// }
-
 const Option = (props) => {
     return (
-        <p>{props.optionText}</p>
+        <div>
+            {props.optionText}
+            <button
+                onClick = {(event) => {
+                    props.handleDeleteOption(props.optionText);
+                }}
+            >
+                remove
+            </button>
+        </div>
     );
 }
-
-//stateless
-// class Option extends React.Component {
-//     render() {
-//         return (
-//             <p>{this.props.optionText}</p>
-//         );
-//     }
-// }
 
 //AddOption is not stateless
 class AddOption extends React.Component {
@@ -166,11 +128,7 @@ class AddOption extends React.Component {
         const option = event.target.elements.option.value.trim();
         const error = this.props.handleAddOption(option);    
     
-        this.setState(() => {
-            return {
-                error:error
-            };
-        });
+        this.setState(() => ({ error:error}) );
 
         event.target.elements.option.value='';
     }
