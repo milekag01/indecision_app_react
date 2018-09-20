@@ -10,6 +10,24 @@ class Counter extends React.Component {
             count: 0
         }
     }
+    componentDidMount(){
+        try{
+            const num = localStorage.getItem('count');
+            const count = parseInt(num,10);
+
+            if(!isNaN(count)){
+                this.setState(() => ({count: count}));
+            }
+        }catch(error){
+            //do nothing
+        }
+    }
+    componentDidUpdate(prevProps,prevState){
+        if(prevState.count!==this.state.count){
+            const num = this.state.count;
+            localStorage.setItem('count',num);
+        }
+    }
     handleAddOne(){
         // console.log('add 1');
         //we can update the state by directly updating as shown below.
@@ -54,41 +72,3 @@ class Counter extends React.Component {
 
 const appRoot = document.getElementById('app');
 ReactDOM.render(<Counter />,appRoot);
-
-
-
-
-
-
-// let count = 0;
-// const addOne = () => {
-//     count++;
-//     renderCounterApp();
-// }
-// const subtractOne = () => {
-//     count--;
-//     renderCounterApp();
-// }
-// const reset = () => {
-//     count=0;
-//     renderCounterApp();
-// }
-
-
-// const appRoot = document.getElementById('app');
-
-// const renderCounterApp = () => {
-//     const template2 = (
-//         <div>
-//             <h2>Count: {count}</h2>
-//             <button onClick={addOne}>+1</button>
-//             <button onClick={subtractOne}>-1</button>
-//             <button onClick={reset}>Reset</button>
-//         </div>
-//     );
-
-//     ReactDOM.render(template2,appRoot);
-// };
-
-// //rendering the template in the starting
-// renderCounterApp();
