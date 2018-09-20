@@ -1,0 +1,94 @@
+class Counter extends React.Component {
+    constructor(props){
+        super(props);
+        this.handleAddOne = this.handleAddOne.bind(this);
+        this.handleSubtractOne = this.handleSubtractOne.bind(this);
+        this.handleReset = this.handleReset.bind(this);
+        //in react components we can can set the
+        // values we want to track using this.state object
+        this.state = {
+            count: 0
+        }
+    }
+    handleAddOne(){
+        // console.log('add 1');
+        //we can update the state by directly updating as shown below.
+        // this.state.count++; 
+        // but our component does not re-render itself if we use this method
+        // instead what we do is use setState method
+        this.setState((prevState) => {
+            return {
+                count: prevState.count + 1
+            };
+        });
+    }
+    handleSubtractOne(){
+        // console.log('subtract 1');
+        this.setState((prevState) => {
+            return {
+                count: prevState.count - 1
+            };
+        });
+    }
+
+    handleReset(){
+        // console.log('Reset');
+        this.setState(() => {
+            return {
+                count: 0
+            };
+        });
+    }
+    
+    render() {
+        return (
+            <div>
+                <h1>Count: {this.state.count} </h1>
+                <button onClick={this.handleAddOne}>+1</button>
+                <button onClick={this.handleSubtractOne}>-1</button>
+                <button onClick={this.handleReset}>Reset</button>
+            </div>
+        );
+    }
+}
+
+const appRoot = document.getElementById('app');
+ReactDOM.render(<Counter />,appRoot);
+
+
+
+
+
+
+// let count = 0;
+// const addOne = () => {
+//     count++;
+//     renderCounterApp();
+// }
+// const subtractOne = () => {
+//     count--;
+//     renderCounterApp();
+// }
+// const reset = () => {
+//     count=0;
+//     renderCounterApp();
+// }
+
+
+// const appRoot = document.getElementById('app');
+
+// const renderCounterApp = () => {
+//     const template2 = (
+//         <div>
+//             <h2>Count: {count}</h2>
+//             <button onClick={addOne}>+1</button>
+//             <button onClick={subtractOne}>-1</button>
+//             <button onClick={reset}>Reset</button>
+//         </div>
+//     );
+
+//     ReactDOM.render(template2,appRoot);
+// };
+
+// //rendering the template in the starting
+// renderCounterApp();

@@ -9,6 +9,32 @@ class Indecision extends React.Component {
             options: props.options
         }
     }
+
+    //fetching data from database when the app starts
+    componentDidMount() {
+        try {
+            const json = localStorage.getItem('options');
+            const options = JSON.parse(json);
+
+            if(options){
+                this.setState(() => ({options: options}) );
+            }
+        } catch(error) {
+            //if error like wrong datatype, do nothing
+        }
+    }
+
+    //as new options is added it stores it
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.options.length !== this.state.options.length){
+            const json = JSON.stringify(this.state.options);
+            localStorage.setItem('options',json);
+        }
+    }
+    componentWillUnmount() {
+        console.log('componentWillUnmount');
+    }
+
     handleDeleteOptions() {
         this.setState(() => ({ options: [] }) );
     }
@@ -86,6 +112,7 @@ const Options = (props) => {
     return (
         <div>
             <button onClick = {props.handleDeleteOptions}>Remove All</button>
+            {props.options.length === 0 && <p>Please add an option to get started!</p>}
             {
                 props.options.map((option) => ( 
                     <Option key = {option} 
@@ -129,8 +156,10 @@ class AddOption extends React.Component {
         const error = this.props.handleAddOption(option);    
     
         this.setState(() => ({ error:error}) );
-
-        event.target.elements.option.value='';
+        if(!error){
+            event.target.elements.option.value='';
+        }
+        
     }
     render() {
         return (
