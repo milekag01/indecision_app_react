@@ -6,7 +6,7 @@ const Layout = (props) => {
     return (
         <div>
             <p>Header</p>
-            {props.content}
+            {props.children}
             <p>Footer</p>
         </div>
     );
@@ -21,4 +21,8 @@ const template = (
 
 const appRoot = document.getElementById('app');
 
-ReactDOM.render(<Layout content={template}/>,appRoot);
+ReactDOM.render((
+    <Layout>
+        <p>Passing content using children</p>   
+    </Layout>
+), appRoot);
