@@ -1,0 +1,42 @@
+//Big Button
+.big-button{
+    background-color: $purple;
+    border: none;
+    border-bottom: 0.6rem solid darken($purple,10%);
+    color: white;
+    font-weight: bold;
+    font-size: $l-size;
+    width: 100%;
+    margin-bottom: $xl-size;
+    padding: 2.4rem;
+}
+.big-button:disabled{
+    opacity: 0.5;
+}
+
+.big-button:focus{
+    outline: none;
+}
+
+//Button
+.button {
+    background-color: $purple;
+    border: none;
+    border-bottom: 0.6rem solid darken($purple,10%);
+    color: white;
+    font-weight: 500;
+    padding: $s-size;
+}
+
+// __ is used in element
+// -- means modifier
+.button--link{
+    background: none;
+    border: none;
+    padding: 0;
+    color: $off-white;
+}
+
+.button:focus{
+    outline: none;
+}
