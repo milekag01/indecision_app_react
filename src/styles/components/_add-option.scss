@@ -8,13 +8,14 @@
 .add-option{
     display: flex;
     padding: $m-size;
+    flex-direction: column;
 }
 .add-option__input{
     flex-grow: 1;
     border: none;
     background-color: $dark-blue;
     border-bottom: 0.3rem solid darken($dark-blue,10%);
-    margin-right: $s-size;
+    margin: 0 0 $s-size 0;
     outline: none;
     color: $off-white;
     padding: $s-size;
@@ -22,4 +23,13 @@
 }
 .add-option__input:focus{
     border-bottom: 0.3rem solid $off-white;
+}
+
+@media (min-width: $desktop-breakpoint) {
+    .add-option{
+        flex-direction: row;
+    }
+    .add-option__input{
+        margin: 0 $s-size 0 0;
+    }
 }
